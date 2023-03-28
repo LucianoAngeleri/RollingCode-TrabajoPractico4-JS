@@ -66,17 +66,21 @@ let listaProductos = [
   },
   { nombreProducto: "Agua micellar", precio: 2890, categoria: "Limpieza" },
 ];
-function dibujarTabla(){
+function dibujarTablaProductos(arreglo){
 document.write('<table class="table table-responsive table-success">');
 document.write('<thead class="table-dark"><th>Producto</th><th>Categoría</th><th>Precio</th></thead><tbody>');
-for (let producto of listaProductos) {
+for (let item of arreglo) {
   document.write('<tr>');
-  document.write(`<td>${producto.nombreProducto}</td><td>${producto.categoria}</td><td>${producto.precio}</td>`);
+  document.write(`<td>${item["nombreProducto"]}</td><td>${item["categoria"]}</td><td>${item["precio"]}</td>`);
   document.write('</tr>');
 }
 document.write('</tbody></table>')               
 }
 document.write("<section class='container'>")
 document.write("<h4 class='display-4 text-success pt-3'>Mostramos la tabla de productos</h4>")
-dibujarTabla();
-document.write("</h4>")
+dibujarTablaProductos(listaProductos);
+
+document.write("<h4 class='display-4 text-success pt-3'>Mostramos la tabla filtrada con 'Protectores solares'</h4>")
+let listaProtectoresSolares = listaProductos.filter(producto => producto.categoria.includes("Protector solar"))
+dibujarTablaProductos(listaProtectoresSolares);
+
