@@ -3,11 +3,8 @@ Ejercicio 3 - Extra
 Con el siguiente array de objetos, crear una funcion que permita dibujar una tabla con las columnas Producto - categoria - precio. Realizar las siguientes tareas:
 
 *Mostrar la tabla completa
-
 *Filtrar el arreglo de productos por Protectores solares y mostrar la tabla filtrada.
-
 *Buscar un producto serum y mostrarlo por pantalla,
-
 *Buscar un producto Bruma y mostrar un mensaje adecuado para el usuario si el producto no existe en el array.
 */
 let listaProductos = [
@@ -69,3 +66,17 @@ let listaProductos = [
   },
   { nombreProducto: "Agua micellar", precio: 2890, categoria: "Limpieza" },
 ];
+function dibujarTabla(){
+document.write('<table class="table table-responsive table-success">');
+document.write('<thead class="table-dark"><th>Producto</th><th>Categoría</th><th>Precio</th></thead><tbody>');
+for (let producto of listaProductos) {
+  document.write('<tr>');
+  document.write(`<td>${producto.nombreProducto}</td><td>${producto.categoria}</td><td>${producto.precio}</td>`);
+  document.write('</tr>');
+}
+document.write('</tbody></table>')               
+}
+document.write("<section class='container'>")
+document.write("<h4 class='display-4 text-success pt-3'>Mostramos la tabla de productos</h4>")
+dibujarTabla();
+document.write("</h4>")
