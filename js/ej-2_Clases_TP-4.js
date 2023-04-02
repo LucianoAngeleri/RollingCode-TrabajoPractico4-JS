@@ -22,11 +22,12 @@ let cuenta = {
     return `El saldo de la cuenta de ${this.titular} es : $${this.saldo}`;
   },
 };
-document.write('<section class="container">');
+document.write('<section class="container py-5">');
 document.write('<h5 class="display-5 text-center text-success">Propiedades del objeto "cuenta" creado:</h5>');
 document.write('<ul class="list-group">');
 document.write(`<li class="list-group-item">Titular de la cuenta: ${cuenta.titular}</li>`);
 document.write(`<li class="list-group-item">Saldo disponible de la cuenta: ${cuenta.saldo}</li>`);
+document.write('</ul>');
 document.write('<h5 class="display-5 text-center text-success">Uso de los métodos del objeto "cuenta":</h5>');
 cuenta.ingresar(parseFloat(prompt(`Ingrese una cantidad de dinero para ingresar en la cuenta de ${cuenta.titular}`)));
 document.write(`<p class="fs-2 text-success">Se utilizó el método "ingresar()" pasando la canitdad de dinero como parametro mediante un prompt</p>`);
@@ -37,4 +38,5 @@ document.write(`<p class="fs-4 text-secondary">${cuenta.informar()}</p>`);
 document.write('<ul class="list-group">');
 document.write(`<li class="list-group-item">Titular de la cuenta: ${cuenta.titular}</li>`);
 document.write(`<li class="list-group-item">Saldo disponible de la cuenta: ${cuenta.saldo}</li>`);
+document.write('</ul>');
 document.write("</section>");
