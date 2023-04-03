@@ -53,10 +53,24 @@ class Libro {
 const libro1 = new Libro (9788478884459,"Harry Potter y la piedra filosofal", "J.K. Rowling", 256)
 const libro2 = new Libro (9788445000057,"El señor de los anillos", "J.R.R. Tolkien", 1216)
 let libros = [libro1,libro2]
+
 document.write('<section class="container">');
 document.write('<h5 class="display-5 text-center text-success">Mostramos los datos de los libros definidos con la clase "Libro":</h5>');
-
 libros.forEach(libro => {
     document.write(`<p class="fs-4 text-info">${libro.mostrarLibro()}</p>`)
 });
+document.write('</section>');
+document.write('<section class="container">');
+document.write('<h5 class="display-5 text-center text-success">Mostramos mostramos la cantidad de páginas de cada libro:</h5>');
+libros.forEach(libro => {
+  document.write(`<p class="fs-4 fw-bold">"${libro.titulo}" tiene ${libro.cantPaginas} páginas</p>`)
+});
+document.write('<h5 class="display-5 text-center text-success">Mostramos cual libro tiene más páginas:</h5>');
+if (libro1.cantPaginas > libro2.cantPaginas){
+  document.write(`<p class="fs-4 fw-bold text-primary">"${libro1.titulo}" tiene más páginas</p>`)
+}else if(libro1.cantPaginas < libro2.cantPaginas){
+  document.write(`<p class="fs-4 fw-bold text-primary">"${libro2.titulo}" tiene más páginas</p>`)
+}else{
+  document.write(`<p class="fs-4 fw-bold text-primary">"${libro1.titulo}" y "${libro2.titulo}" tienen la misma cantidad de páginas</p>`)
+}
 document.write('</section>');
