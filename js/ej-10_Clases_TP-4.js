@@ -8,26 +8,43 @@ Crear un objeto de tipo aeropuerto llamado "Aeropuerto Internacional", crear 3 o
 */
 class Aeropuerto {
   constructor(nombreAeropuerto) {
-    this.nombreAeropuerto = nombreAeropuerto;
-    this.listaAviones = [];
+    this._nombreAeropuerto = nombreAeropuerto;
+    this._listaAviones = [];
+  }
+  get nombreAeropuerto(){
+    return this._nombreAeropuerto
+  }
+  set nombreAeropuerto(nuevoNombreAeropuerto){
+    if (nuevoNombreAeropuerto.length > 0) {
+        this._nombreAeropuerto=nuevoNombreAeropuerto
+    }
+  }
+  get listaAviones(){
+    return this._listaAviones
+  }
+  set listaAviones(nuevalistaAviones){
+    if (nuevalistaAviones.length > 0) {
+        this._listaAviones=nuevalistaAviones
+    }
   }
   agregarAvion(objetoAvion) {
+    alert(`Se ha agregado el avión ${objetoAvion.nombre}`)
     this.listaAviones.push(objetoAvion);
   }
   buscarAvion(nombreAvion) {
     let avionesEncontrados = this.listaAviones.filter((avion) => avion.nombre === nombreAvion);
     if (avionesEncontrados.length > 0) {
-      let datosAviones = avionesEncontrados.map(
-        (avion) =>
-          `El avión "${avion.nombre}" tiene una capacidad para ${avion.capacidad} pasajeros y tiene destino "${avion.destino}"`
+      let datosAviones = avionesEncontrados.map(avion => `El avión "${avion.nombre}" tiene una capacidad para ${avion.capacidad} pasajeros y tiene destino "${avion.destino}"`
       );
       return datosAviones;
     } else {
       return "No se encontró el avión buscado";
     }
   }
-  buscarAvion(nombreAvion) {
-    //Recibirá el nombre de un avión y devolverá información en caso de encontrarlo, si no lo encontró indicar con un mensaje.
+  mostrarListaAviones(){
+    document.write('<ul class="list-group py-3 fs-3">');
+    this.listaAviones.forEach(avion => document.write(`<li class="list-group-item">El avión "${avion.nombre}" tiene una capacidad para ${avion.capacidad} pasajeros y tiene destino "${avion.destino}"</li>`))
+    document.write('</ul>');
   }
 }
 class Avion {
@@ -46,11 +63,11 @@ class Avion {
       this.#listaPasajeros = nuevaListaPasajeros;
     }
   }
-  abordar(pasajero) {
-    if (this.capacidad > this.listaPasajeros.length) {
-      let capacidadDisponible = this.capacidad - this.listaPasajeros.length;
-      this.listaPasajeros.push(pasajero);
-      return `El avión ${this.nombre} tiene capacidad disponible de ${capacidadDisponible}, se procede al abordaje`;
+  abordar(pasajeros) {
+    let capacidadDisponible = this.capacidad - this.listaPasajeros.length;
+    if (capacidadDisponible > 0) {
+      this.listaPasajeros.push(pasajeros);
+      return `El avión ${this.nombre} tiene capacidad disponible de ${capacidadDisponible} pasajeros, se procede al abordaje del pasajero ${pasajeros.join(", ")}`;
     } else {
       return `El avión ${this.nombre} se encuentra completo`;
     }
@@ -68,16 +85,30 @@ function generarListaPasajeros(maximo) {
 let aeropuertoInternacional = new Aeropuerto("Aeropuerto Internacional");
 
 //Crear 3 objetos aviones con diferentes destinos.
-let avion1 = new Avion("Airbus A380", 525, "Miami", generarListaPasajeros(200));
-let avion2 = new Avion("Embraer E190", 114, "Buenos Aires", generarListaPasajeros(118));
+let avion1 = new Avion("Airbus A380", 525, "Miami", generarListaPasajeros(525));
+let avion2 = new Avion("Embraer E190", 114, "Buenos Aires", generarListaPasajeros(500));
 let avion3 = new Avion("Boeing-747", 366, "Estambul", generarListaPasajeros(366));
 
 //Agregar los 3 aviones al aeropuerto
+document.write('<section class="container mt-3">')
+document.write('<h5 class="display-5 text-success py-2">Uso el método agregarAvion() en la clase "Aeropuerto"</h5>');
 aeropuertoInternacional.agregarAvion(avion1);
 aeropuertoInternacional.agregarAvion(avion2);
 aeropuertoInternacional.agregarAvion(avion3);
+aeropuertoInternacional.mostrarListaAviones();
+document.write('</section>');
+
 //Buscar un avión
-aeropuertoInternacional.agregarAvion("Airbus A380")
-aeropuertoInternacional.agregarAvion("Embraer E190")
-aeropuertoInternacional.agregarAvion("Boeing-737")
+document.write('<section class="container mt-3">')
+document.write('<h5 class="display-5 text-success py-2">Uso el método buscarAvion() en la clase "Aeropuerto"</h5>');
+document.write('<ul class="list-group py-3 fs-3">');
+document.write(`<li class="list-group-item text-success">Se buscó el avion "Airbus A380": ${aeropuertoInternacional.buscarAvion("Airbus A380")}</li>`)
+document.write(`<li class="list-group-item text-success">Se buscó el avion "Embraer E190": ${aeropuertoInternacional.buscarAvion("Embraer E190")}</li>`)
+document.write(`<li class="list-group-item text-danger">Se buscó el avion "Boeing-737": ${aeropuertoInternacional.buscarAvion("Boeing-737")}</li>`)
+document.write('</ul>');
+document.write('</section>');
 //Usar el método abordar
+document.write('<section class="container mt-3">')
+document.write('<h5 class="display-5 text-success py-2">Uso el método buscarAvion() en la clase "Aeropuerto"</h5>');
+document.write(`<h6 class="display-6">${avion2.abordar(["Pasajero Luciano","Pasajero Juan"])}</h6>`);
+document.write(`<h6 class="display-6">${avion1.abordar(["Pasajero Luciano","Pasajero Juan"])}</h6>`);
