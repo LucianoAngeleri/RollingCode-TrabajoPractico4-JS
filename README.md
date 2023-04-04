@@ -3,8 +3,13 @@ En este trabajo práctico realizamos diferentes ejercicios para aprender algunos
 Se resolvió haciendo uso de los conceptos aprendidos previamente en el Trabajo Práctico anteriores y se integraron nuevos conocimientos:
 * Objetos
     * Creación de objetos literales `let nombreOjeto = { propiedad1: valor1, propiedad2: valor2}`
+    * Instanciación de objetos `nombreOjeto = new ClaseObjeto(parametro1, parametro2)`
 * Clases
-    * ``
+    * Creación de clases `class nombreClase{ propiedad1 , propiedad2}`
+    * Uso de constructor de clase `constructor{ this.propiedad1 = propiedad1 , this.propiedad2 = propiedad2}`
+    * Uso de `.this` para acceder a las propiedades
+    * Uso de Herencia, Encapsulamiento y otras caracteristicas de POO.
+    
 ## Uso de GIT
 Tomamos como base el Trabajo Práctico N°3, copiamos su estructura e hicimos el commit inicial. Se creó una rama `dev` a partir de la rama `main`. Luego por cada ejercicio se creo una rama `ejercicioN` donde se trabajó la resolución del ejercicio correspondiente a esa rama y luego se unieron los cambios a la rama `dev`. Una vez finalizados todos los ejercicios y comprobado que funcionan correctamente (se efectuaron algunas correcciones menores directamente en la rama `dev` por cuestiones prácticas), se unió la rama `dev` a la rama `main` para tener todos los cambios. 
 ## Ejercicios JavaScript
